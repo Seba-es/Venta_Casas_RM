@@ -38,21 +38,11 @@ casas_independencia.iloc[:,[0, 3, 6, 9]]  # extrae las habitaciones, superficie 
 casas_huechuraba.iloc[:,[0, 3, 6, 9]]  # extrae las habitaciones, superficie y valor
 # %%
 casas_conchali.iloc[:,[0, 3, 6, 9]]  # extrae las habitaciones, superficie y valor
-# %%
-# ideas sacar el valor promedio de casas por comuna
-# sacar las habitaciones promedio y la superficie promedio
-# limpiar los datos que no usaré como u.f
-# comparar el los promedios de las casas del sector norte de la capital
-# Conchalí, Huechuraba, Independencia, Recoleta, Quilicura
-# Probar fucion dataframe.groupby('nombre columna) para seleccionar valores especificos
-# Probar casas_conchali.groupby('Valor_CLP') no funcionó xd
-
 
 # %%
 # Juntar todos los datos de las comunas de la zona norte de Santiago y 
 # Ordenar las columnas para saber las casas mas caras, las con más habitaciones, etc.
 # Eso se debería poder hacer con el método  .sort_values('nombre columa')
-
 
 # %%
 # zona_norte = df[df['Comuna'] == ['Independencia'] # otra forma de extraer las comunas
@@ -76,8 +66,34 @@ casas_grandes = casas_grandes.sort_values('Superficie_Construida_M2', ascending=
 casas_grandes.head(10)
 
 # %%
+# Otra Idea: aplicar estadisticas en el dataframe .mean() , . median(), mode(), etc
+
+# %% [markdown]
+## Valor promedio casas Santiago Norte
+valor_promedio_casas_cpl = zona_norte['Valor_CLP'].mean()
+valor_promedio_casas_cpl = valor_promedio_casas_cpl.round(1)
+print('El valor promedio de las casas del sector Norte de Santiago es', valor_promedio_casas_cpl, ' pesos chilenos')
+## Valor Promedio U.F 
+valor_promedio_casas_uf = zona_norte['Valor_UF'].mean()
+valor_promedio_casas_uf = valor_promedio_casas_uf.round(1)
+print('El valor promedio de las casas del sector Norte de Santiago es', valor_promedio_casas_uf, ' U.F')
+## La Casa más cara es
+casa_cara = zona_norte['Valor_CLP'].max()
+print('La casa con mayor precio del Sector Norte de Santiago cuesta ', casa_cara, ' de pesos chilenos')
+## La Casa más barata es
+casa_barata = zona_norte['Valor_CLP'].min()
+print('La casa con menor precio del Sector Norte de Santiago cuesta ', casa_barata, ' de pesos chilenos')
+# %% [markdown]
+## Valor promedio casas Santiago Norte desagregado por comuna
+valor_promedio_comunas = zona_norte.pivot_table(values='Valor_CLP', index='Comuna')
+valor_promedio_comunas = valor_promedio_comunas.round(1)
+print(valor_promedio_comunas)
+
+#%% [markdown]
+## Resumen, características casas Zona Norte
+caracteristicas_casas = zona_norte.pivot_table(values=['Total_Superficie_M2', 'N_Habitaciones', 'N_Baños', 'N_Estacionamientos'], index='Comuna', margins=True)
+caracteristicas_casas = caracteristicas_casas.round(1)
+print(caracteristicas_casas)
+# %%
 # Idea saber cuantas corredoras de propiedades hay en el sector norte o en las comunas
 # Para esto tendriamos que eliminar los duplicados con .drop_duplicates(subset='nombre_corredora')
-
-# %%
-# Otra Idea: aplicar estadisticas en el dataframe .mean() , . median(), mode(), etc
