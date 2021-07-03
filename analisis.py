@@ -38,36 +38,26 @@ casas_independencia.iloc[:,[0, 3, 6, 9]]  # extrae las habitaciones, superficie 
 casas_huechuraba.iloc[:,[0, 3, 6, 9]]  # extrae las habitaciones, superficie y valor
 # %%
 casas_conchali.iloc[:,[0, 3, 6, 9]]  # extrae las habitaciones, superficie y valor
-
-# %%
-# Juntar todos los datos de las comunas de la zona norte de Santiago y 
-# Ordenar las columnas para saber las casas mas caras, las con más habitaciones, etc.
-# Eso se debería poder hacer con el método  .sort_values('nombre columa')
-
-# %%
+# %% 
 # zona_norte = df[df['Comuna'] == ['Independencia'] # otra forma de extraer las comunas
-# Buscar la forma de juntar en un dataframe todas las comunas del sector norte
+# Agrupar información sobre las casas de la zona norte
 zona_norte = df[df['Comuna'].isin(['Conchalí', 'Independencia', 'Huechuraba', 'Quilicura', 'Recoleta'])]
-# %%
-# Ordenar las desde las casas mas caras a las mas baratas del sector Norte 
+# %% [markdown]
+#### Ordenar desde las casas mas caras a las más baratas del sector Norte 
 zona_norte = zona_norte.sort_values('Valor_CLP', ascending=False)
 # Mostrar las Casas mas caras del sector Norte
 casas_caras = zona_norte[['Comuna', 'Valor_CLP']] 
 casas_caras.head(10)
-# %%
-# Casas con terrenos grandes
+# %% [markdown]
+#### Casas con terrenos más grandes del sector norte
 cantidad_terreno = zona_norte[['Comuna', 'Total_Superficie_M2']]
 cantidad_terreno = cantidad_terreno.sort_values('Total_Superficie_M2', ascending=False)
 cantidad_terreno.head(10)
-# %%
-# Casas mas grandes por comuna 
+# %% [markdown]
+#### Casas más grandes por comuna 
 casas_grandes = zona_norte[['Comuna', 'Superficie_Construida_M2']]
 casas_grandes = casas_grandes.sort_values('Superficie_Construida_M2', ascending=False)
 casas_grandes.head(10)
-
-# %%
-# Otra Idea: aplicar estadisticas en el dataframe .mean() , . median(), mode(), etc
-
 # %% [markdown]
 ## Valor promedio casas Santiago Norte
 valor_promedio_casas_cpl = zona_norte['Valor_CLP'].mean()
@@ -88,12 +78,13 @@ print('La casa con menor precio del Sector Norte de Santiago cuesta ', casa_bara
 valor_promedio_comunas = zona_norte.pivot_table(values='Valor_CLP', index='Comuna')
 valor_promedio_comunas = valor_promedio_comunas.round(1)
 print(valor_promedio_comunas)
-
+# %% [markdown]
+#### Corredoras de Propiedades comunes en el Sector Norte 
+corredoras_comunes = zona_norte.drop_duplicates(subset=['Corredor', 'Comuna'])
+corredoras_comunes = corredoras_comunes['Corredor'].value_counts(sort=True)
+print(corredoras_comunes)
 #%% [markdown]
-## Resumen, características casas Zona Norte
+## Resumen, Características Casas Zona Norte
 caracteristicas_casas = zona_norte.pivot_table(values=['Total_Superficie_M2', 'N_Habitaciones', 'N_Baños', 'N_Estacionamientos'], index='Comuna', margins=True)
 caracteristicas_casas = caracteristicas_casas.round(1)
 print(caracteristicas_casas)
-# %%
-# Idea saber cuantas corredoras de propiedades hay en el sector norte o en las comunas
-# Para esto tendriamos que eliminar los duplicados con .drop_duplicates(subset='nombre_corredora')
