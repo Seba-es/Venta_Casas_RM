@@ -1,5 +1,5 @@
 # Venta_Casas_RM
-### Análisis de casas usadas que se venden en las comunas de la zona norte en la Región Metropolitana(Chile)
+### Análisis de casas usadas que se venden en las comunas de la zona norte en la Región Metropolitana (Chile)
 ### Información sobre los archivos:
 #### analisis.ipynb = Archivo en formato Jupyter Notebook
 #### analisis.py = Archivo en formato python trabajado mediante la función 'Python Interactive Window' del editor Visual Studio Code
