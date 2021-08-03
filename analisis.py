@@ -33,11 +33,11 @@ casas_quilicura = df.loc[842:891]
 # %% [markdown]
 ### Extracción de la Información:
 #### Número de habitaciones, superficie y valor en cada comuna del Sector Norte
-casas_independencia.iloc[:,[0, 3, 6, 9]]  # extrae las habitaciones, superficie y valor
+casas_independencia.iloc[:,[0, 1, 5, 7]]  # extrae las habitaciones, superficie y valor
 # %%
-casas_huechuraba.iloc[:,[0, 3, 6, 9]]  # extrae las habitaciones, superficie y valor
+casas_huechuraba.iloc[:,[0, 1, 5, 7]]  # extrae las habitaciones, superficie y valor
 # %%
-casas_conchali.iloc[:,[0, 3, 6, 9]]  # extrae las habitaciones, superficie y valor
+casas_conchali.iloc[:,[0, 1, 5, 7]]  # extrae las habitaciones, superficie y valor
 # %% 
 # zona_norte = df[df['Comuna'] == ['Independencia'] # otra forma de extraer las comunas
 # Agrupar información sobre las casas de la zona norte
