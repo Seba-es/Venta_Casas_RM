@@ -19,7 +19,6 @@
 #### N_Estacionamientos: Número de estacionamientos.
 #### Total de superficie en mt2
 #### Superficie construida en mt2: metros de la construcción habitable.
-#### Valor en UF: valor en Unidades de fomentos de la propiedad declarado en el portal (hay avisos que no poseen este valor, por lo cual se generó según el valor de la UF al 2 ó 3 de mayo de 2020 - no lo recuerdo bien jejeje…). Más información sobre la UF en (español) https://es.wikipedia.org/wiki/Unidad_de_fomento (english) https://en.wikipedia.org/wiki/Unidad_de_Fomento
 #### Valor CLP: Valor en pesos chilenos.
 #### Dirección: dirección de la casa del aviso.
 #### Quién vende: Nombre de la persona que vende la vivienda.
